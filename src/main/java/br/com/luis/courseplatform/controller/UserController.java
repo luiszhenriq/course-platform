@@ -5,6 +5,7 @@ import br.com.luis.courseplatform.dtos.user.UserRequestDto;
 import br.com.luis.courseplatform.dtos.user.UserResponseDto;
 import br.com.luis.courseplatform.dtos.user.UserUpdateDto;
 import br.com.luis.courseplatform.services.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +32,13 @@ public class UserController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
         return new ResponseEntity<>(service.create(userRequestDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable("id") UUID id,
                                                       @RequestBody UserUpdateDto userUpdateDto) {
         return new ResponseEntity<>(service.update(id, userUpdateDto), HttpStatus.OK);

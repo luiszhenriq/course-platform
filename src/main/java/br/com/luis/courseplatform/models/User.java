@@ -1,6 +1,7 @@
 package br.com.luis.courseplatform.models;
 
 
+import br.com.luis.courseplatform.dtos.user.UserRequestDto;
 import br.com.luis.courseplatform.models.enums.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,5 +36,12 @@ public class User {
     @Column(nullable = false)
     private UserType userType;
 
-   // private List<Course> courses = new ArrayList<>();
+    public User(UserRequestDto user) {
+        this.name = user.name();
+        this.email = user.email();
+        this.password = user.password();
+        this.userType = user.userType();
+    }
+
+    // private List<Course> courses = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package br.com.luis.courseplatform.models;
 
 
+import br.com.luis.courseplatform.dtos.module.ModuleRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +25,9 @@ public class Module {
     @Column(nullable = false)
     private String title;
 
-   // private List<Course> courses = new ArrayList<>();
+    public Module(ModuleRequestDto moduleRequestDto) {
+        this.title = moduleRequestDto.title();
+    }
+
+    // private List<Course> courses = new ArrayList<>();
 }

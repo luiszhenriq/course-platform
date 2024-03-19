@@ -1,12 +1,13 @@
 package br.com.luis.courseplatform.models;
 
 
+import br.com.luis.courseplatform.dtos.assessment.AssessmentRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -27,5 +28,10 @@ public class Assessment {
     @Column(nullable = false)
     private String comment;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
+
+    public Assessment(AssessmentRequestDto assessmentRequestDto) {
+        this.comment = assessmentRequestDto.comment();
+        this.createdAt = LocalDateTime.now();
+    }
 }

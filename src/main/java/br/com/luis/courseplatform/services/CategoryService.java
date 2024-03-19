@@ -28,13 +28,7 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-    private CategoryResponseDto categoryResponseDto(Category category) {
 
-        return new CategoryResponseDto(
-                category.getId(),
-                category.getName()
-        );
-    }
 
     public CategoryResponseDto findById(UUID id) {
 
@@ -68,5 +62,13 @@ public class CategoryService {
 
     public void delete(UUID id) {
         repository.deleteById(id);
+    }
+
+    private CategoryResponseDto categoryResponseDto(Category category) {
+
+        return new CategoryResponseDto(
+                category.getId(),
+                category.getName()
+        );
     }
 }

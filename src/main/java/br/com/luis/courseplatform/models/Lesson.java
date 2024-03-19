@@ -1,6 +1,7 @@
 package br.com.luis.courseplatform.models;
 
 
+import br.com.luis.courseplatform.dtos.lesson.LessonRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,4 +29,9 @@ public class Lesson {
     @Column(nullable = false)
     private Integer duration;
 
+    public Lesson(LessonRequestDto lessonRequestDto) {
+        this.title = lessonRequestDto.title();
+        this.videoUrl = lessonRequestDto.videoUrl();
+        this.duration = lessonRequestDto.duration();
+    }
 }

@@ -4,6 +4,7 @@ package br.com.luis.courseplatform.controller;
 import br.com.luis.courseplatform.dtos.course.CourseRequestDto;
 import br.com.luis.courseplatform.dtos.course.CourseResponseDto;
 import br.com.luis.courseplatform.services.CourseService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +32,13 @@ public class CourseController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<CourseResponseDto> createCourse(@RequestBody CourseRequestDto courseRequestDto) {
         return new ResponseEntity<>(service.create(courseRequestDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<CourseResponseDto> updateCourse(@PathVariable("id") UUID id,
                                                           @RequestBody CourseRequestDto courseRequestDto) {
         return new ResponseEntity<>(service.update(id, courseRequestDto), HttpStatus.OK);

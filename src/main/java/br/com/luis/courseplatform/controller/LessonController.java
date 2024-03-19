@@ -4,6 +4,7 @@ package br.com.luis.courseplatform.controller;
 import br.com.luis.courseplatform.dtos.lesson.LessonRequestDto;
 import br.com.luis.courseplatform.dtos.lesson.LessonResponseDto;
 import br.com.luis.courseplatform.services.LessonService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +32,13 @@ public class LessonController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<LessonResponseDto> createLesson(@RequestBody LessonRequestDto lessonRequestDto) {
         return new ResponseEntity<>(service.create(lessonRequestDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<LessonResponseDto> updateLesson(@PathVariable("id") UUID id,
                                                           @RequestBody LessonRequestDto lessonRequestDto) {
         return new ResponseEntity<>(service.update(id, lessonRequestDto), HttpStatus.OK);

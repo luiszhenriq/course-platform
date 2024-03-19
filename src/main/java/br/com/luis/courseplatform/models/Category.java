@@ -1,6 +1,7 @@
 package br.com.luis.courseplatform.models;
 
 
+import br.com.luis.courseplatform.dtos.category.CategoryRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +22,8 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
+
+    public Category(CategoryRequestDto categoryRequestDto) {
+        this.name = categoryRequestDto.name();
+    }
 }

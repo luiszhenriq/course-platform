@@ -1,5 +1,6 @@
 package br.com.luis.courseplatform.models;
 
+import br.com.luis.courseplatform.dtos.course.CourseRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,4 +36,11 @@ public class Course {
    // private User user;
 
     private LocalDate createdAt;
+
+    public Course(CourseRequestDto courseRequestDto) {
+        this.title = courseRequestDto.title();
+        this.description = courseRequestDto.description();
+        this.price = courseRequestDto.price();
+        this.createdAt = LocalDate.now();
+    }
 }

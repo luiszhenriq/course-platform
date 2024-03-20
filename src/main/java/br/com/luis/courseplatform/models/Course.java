@@ -31,11 +31,17 @@ public class Course {
     @Column(nullable = false)
     private Integer price;
 
-   // private List<Lesson> lessons = new ArrayList<>();
-
-   // private User user;
-
     private LocalDate createdAt;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Module> modules = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Course(CourseRequestDto courseRequestDto) {
         this.title = courseRequestDto.title();

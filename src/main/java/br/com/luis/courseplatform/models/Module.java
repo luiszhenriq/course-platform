@@ -25,9 +25,15 @@ public class Module {
     @Column(nullable = false)
     private String title;
 
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
+    private List<Lesson> lessons = new ArrayList<>();
+
+    @ManyToOne
+    private Course course;
+
     public Module(ModuleRequestDto moduleRequestDto) {
         this.title = moduleRequestDto.title();
     }
 
-    // private List<Course> courses = new ArrayList<>();
+
 }

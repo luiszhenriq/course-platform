@@ -36,6 +36,9 @@ public class User {
     @Column(nullable = false)
     private UserType userType;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Course> courses = new ArrayList<>();
+
     public User(UserRequestDto user) {
         this.name = user.name();
         this.email = user.email();
@@ -43,5 +46,4 @@ public class User {
         this.userType = user.userType();
     }
 
-    // private List<Course> courses = new ArrayList<>();
 }

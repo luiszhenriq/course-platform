@@ -21,14 +21,18 @@ public class Assessment {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-   // private Course course;
-
-   // private User user;
-
     @Column(nullable = false)
     private String comment;
 
     private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Assessment(AssessmentRequestDto assessmentRequestDto) {
         this.comment = assessmentRequestDto.comment();

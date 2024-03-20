@@ -29,6 +29,10 @@ public class Lesson {
     @Column(nullable = false)
     private Integer duration;
 
+    @ManyToOne
+    @JoinColumn(name = "module_id")
+    private Module module;
+
     public Lesson(LessonRequestDto lessonRequestDto) {
         this.title = lessonRequestDto.title();
         this.videoUrl = lessonRequestDto.videoUrl();
